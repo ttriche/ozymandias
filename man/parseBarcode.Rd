@@ -3,8 +3,8 @@
 \name{parseBarcode}
 \alias{parseBarcode}
 \title{Parse a TCGA or TARGET barcode and translate the codebook entries.
-Note that TSS (tissue source site) is inconsistent between TCGA and TARGET
-and is discarded by default to avoid confusion.  TSS=TRUE will retain it.}
+Note that tissue source site is inconsistent between TCGA and TARGET
+and is discarded by default to avoid confusion.}
 \usage{
 parseBarcode(barcode, sourcesite = FALSE)
 }
@@ -18,7 +18,7 @@ a vector of named fragments
 }
 \description{
 Parse a TCGA or TARGET barcode and translate the codebook entries.
-Note that TSS (tissue source site) is inconsistent between TCGA and TARGET
-and is discarded by default to avoid confusion.  TSS=TRUE will retain it.
+Note that tissue source site is inconsistent between TCGA and TARGET
+and is discarded by default to avoid confusion.
 }
 

@@ -1,6 +1,6 @@
 #' Parse a TCGA or TARGET barcode and translate the codebook entries.
-#' Note that TSS (tissue source site) is inconsistent between TCGA and TARGET
-#' and is discarded by default to avoid confusion.  TSS=TRUE will retain it.
+#' Note that tissue source site is inconsistent between TCGA and TARGET
+#' and is discarded by default to avoid confusion.
 #'
 #' @param   barcode     a TCGA or TARGET barcode for a sample/specimen
 #' @param   sourcesite  retain and translate the tissue Source.Site? (FALSE)

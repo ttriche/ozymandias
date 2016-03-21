@@ -1,6 +1,6 @@
 Package: ozymandias
 Title: Tools for region- and process-centric analyses of multiple assay types
-Version: 0.27
+Version: 0.28
 Date: 2016-03-21
 Author: Tim Triche, Jr.
 Maintainer: Tim Triche, Jr. <tim.triche@gmail.com>
