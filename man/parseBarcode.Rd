@@ -2,23 +2,34 @@
 % Please edit documentation in R/parseBarcode.R
 \name{parseBarcode}
 \alias{parseBarcode}
+\alias{parseFilenames}
 \title{Parse a TCGA or TARGET barcode and translate the codebook entries.
 Note that tissue source site is inconsistent between TCGA and TARGET
 and is discarded by default to avoid confusion.}
 \usage{
 parseBarcode(barcode, sourcesite = FALSE)
+
+parseFilenames(filenames)
 }
 \arguments{
 \item{barcode}{a TCGA or TARGET barcode for a sample/specimen}
 
 \item{sourcesite}{retain and translate the tissue Source.Site? (FALSE)}
+
+\item{filenames}{a character vector of TARGET/TCGA filenames to parse}
 }
 \value{
 a vector of named fragments
+
+a data.frame
 }
 \description{
 Parse a TCGA or TARGET barcode and translate the codebook entries.
 Note that tissue source site is inconsistent between TCGA and TARGET
 and is discarded by default to avoid confusion.
 }
+\section{Functions}{
+\itemize{
+\item \code{parseFilenames}: 
+}}
 

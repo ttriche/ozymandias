@@ -23,6 +23,17 @@ parseBarcode <- function(barcode, sourcesite=FALSE) {
   return(parsed[fragments])
 }
 
+#' @describeIn parseBarcode
+#'
+#' @param filenames   a character vector of TARGET/TCGA filenames to parse
+#' 
+#' @return  a data.frame
+#'
+#' @export
+parseFilenames <- function(filenames) { 
+  as.data.frame(do.call(rbind, lapply(filenames, parseBarcode)))
+}
+
 .getTissue <- function(tissue) {
   data(TCGA.tissues, package="ozymandias")
   TCGA.tissues[tissue, "Short.Letter.Code"]
