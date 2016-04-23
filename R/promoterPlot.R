@@ -6,11 +6,13 @@
 #' @param ...       other arguments passed on to Heatmap()
 #' 
 #' @import ComplexHeatmap
-#'
+#' @import impute 
+#' 
 #' @export
 promoterPlot <- function(grSet, promoter, ...) { 
   res <- sort(unique(subsetByOverlaps(grSet, promoter)))
   rownames(res) <- as(granges(res), "character") 
-  Heatmap(t(getBeta(res)), cluster_columns=FALSE, col=jet, name="Methylation", 
-          ...)
+  betas <- getBeta(res)
+  if (any(is.na(betas))) betas <- impute.knn(betas)$data
+  Heatmap(t(betas), cluster_columns=FALSE, col=jet, name="Methylation", ...)
 } 
