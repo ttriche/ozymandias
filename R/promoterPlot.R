@@ -14,5 +14,6 @@ promoterPlot <- function(grSet, promoter, ...) {
   rownames(res) <- as(granges(res), "character") 
   betas <- getBeta(res)
   if (any(is.na(betas))) betas <- impute.knn(betas)$data
-  Heatmap(t(betas), cluster_columns=FALSE, col=jet, name="Methylation", ...)
+  Heatmap(t(betas), cluster_columns=FALSE, col=jet, name="Methylation", 
+          row_names_gp=gpar(fontsize=7), column_names_gp=gpar(fontsize=7), ...)
 } 
