@@ -21,8 +21,9 @@ addCytoInfo <- function(x, y=c("chr", "arm", "band")) {
       if (require("ozymandias")) data(hg19.cytobands, package="ozymandias")
       else load("hg19.cytobands.rda") 
     }
-    olaps <- findOverlaps(x, hg19.cytobands) # refactor, use build.info
-    mcols(x)[, y] <- mcols(hg19.cytobands)[subjectHits(olaps), y]
+    regions <- unlist(reduce(split(hg19.cytobands, mcols(hg19.cytobands)[, y])))
+    olaps <- findOverlaps(x, regions) # refactor, use build.info
+    mcols(x)[, y] <- names(regions)[subjectHits(olaps)]
   }
   return(x)
 }
