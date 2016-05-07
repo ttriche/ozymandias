@@ -1,7 +1,7 @@
 ## ease transition from SummarizedExperiment to RangedSummarizedExperiment
 setMethod("update", signature(object = "GenomicRatioSet"),
   function(object) {
-      getOldAssay <- function(x, y) slot(x, "assays")[["data"]][[y]]
+      getOldAssay <- function(x, y) slot(x, "assays")[[y]]
       grset <- GenomicRatioSet(gr=slot(object, "rowData"),
                                Beta=getOldAssay(object, "Beta"),
                                M=getOldAssay(object, "M"),
