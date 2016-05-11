@@ -13,7 +13,7 @@ geoIDATsToRgSet <- function(res) {
   covs <- names(colData(res)) 
   message("Checking for $supplementary_file and $supplementary_file.1 ...")
 
-  if (!c("supplementary_file", "supplementary_file.1" ) %in% covs) {
+  if (!all(c("supplementary_file", "supplementary_file.1" ) %in% covs)) {
     stop("Supplementary files from GEO not found.")
   } else if (!"title" %in% covs) {
     stop("Sample titles from GEO not found.")
