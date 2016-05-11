@@ -7,9 +7,9 @@
 reanalyzeFromIDATs(grSet, name)
 }
 \arguments{
-\item{name}{the name of the resulting rgSet and grSet files}
+\item{grSet}{a grSet with $supplementary_file and $supplementary_file.1}
 
-\item{grset}{a grSet with $supplementary_file}
+\item{name}{the name of the resulting rgSet and grSet files}
 }
 \value{
 a reanalyzed and funnorm()'ed grSet

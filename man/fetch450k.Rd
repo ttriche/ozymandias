@@ -4,10 +4,14 @@
 \alias{fetch450k}
 \title{Pull a 450k dataset from GEO.}
 \usage{
-fetch450k(GSE)
+fetch450k(GSE, IDATs = TRUE, ...)
 }
 \arguments{
 \item{GSE}{The dataset.}
+
+\item{IDATs}{Reanalyze from IDAT files if possible? (TRUE)}
+
+\item{...}{Additional arguments to be passed to prepForReanalysis().}
 }
 \value{
 a GenomicRatioSet.

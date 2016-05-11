@@ -4,10 +4,14 @@
 \alias{prepForReanalysis}
 \title{extract IDAT names, etc. for reprocessing from raw data}
 \usage{
-prepForReanalysis(res)
+prepForReanalysis(res, ask = TRUE, ...)
 }
 \arguments{
 \item{res}{a SummarizedExperiment, GenomicRatioSet, or suchlike}
+
+\item{ask}{ask before downloading the supplemental data? (TRUE)}
+
+\item{...}{other arguments to (potentially) pass to getGEOSuppFiles()}
 }
 \value{
 the same thing but with tidied-up Basename, Sample_Name, etc.
