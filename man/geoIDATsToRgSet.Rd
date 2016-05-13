@@ -2,17 +2,19 @@
 % Please edit documentation in R/geoIDATsToRgSet.R
 \name{geoIDATsToRgSet}
 \alias{geoIDATsToRgSet}
-\title{short-circuit minfi's irritating insistence on un-gzipped IDAT files}
+\title{read in gzipped IDAT files corresponding to a GEO series with IDAT files}
 \usage{
-geoIDATsToRgSet(res)
+geoIDATsToRgSet(res, parallel = FALSE)
 }
 \arguments{
 \item{res}{something with $supplementary_file and $supplementary_file.1}
+
+\item{parallel}{try to run multicore (default: FALSE)}
 }
 \value{
 an rgSet
 }
 \description{
-short-circuit minfi's irritating insistence on un-gzipped IDAT files
+read in gzipped IDAT files corresponding to a GEO series with IDAT files
 }
 
