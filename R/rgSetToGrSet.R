@@ -33,7 +33,7 @@ rgSetToGrSet <- function(rgSet, pcutoff=0.01, genome=c("hg19","hg38"),
                              annotation=annotation(mset))
   }
 
-  metadata(grSet)$SNPs <- getSnpBetas(rgSet)
+  metadata(grSet)$SNPs <- getSnpBeta(rgSet)
   assays(grSet)$pval <- matrix(NA_real_, ncol=ncol(grSet), nrow=nrow(grSet))
   assays(grSet)$pval <- detectionP(rgSet)[rownames(grSet), colnames(grSet)]
   is.na(assays(grSet)$Beta[which(assays(grSet)$pval > pcutoff)]) <- TRUE 

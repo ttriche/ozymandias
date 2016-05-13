@@ -8,7 +8,7 @@
 #' @return        a MethylSet
 #'
 #' @export 
-preprocessNoob <- function(rgSet, offset=15, dyeCorr=FALSE, verbose = TRUE) { 
+preprocessNoob27k <- function(rgSet, offset=15, dyeCorr=FALSE, verbose = TRUE) {
 
   .isRG(rgSet)
   manifest <- getManifest(rgSet)
