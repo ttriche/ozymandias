@@ -24,7 +24,7 @@ IDATsToRgSet <- function(res, idatGrn=NULL, idatRed=NULL, parallel=FALSE) {
 
   checkgzip <- function(f) ifelse(file.exists(f), f, paste0(f, ".gz"))
   getIDAT <- function(barcode, ch) checkgzip(paste0(barcode, "_", ch, ".idat"))
-  if (!all(idatCols %in% covs)) { # {{{
+  if (!all(idatCols %in% covs)) {
     message("Checking for $Basename column...")
     if (!"Basename" %in% covs) {
       stop("Missing. Cannot determine IDAT files from data, aborting load.")
@@ -32,7 +32,14 @@ IDATsToRgSet <- function(res, idatGrn=NULL, idatRed=NULL, parallel=FALSE) {
       message("Found.  Reconstructing per-channel IDAT filenames...")
       for (ch in channels) res[, idatCols[ch]] <- getIDAT(res$Basename, ch)
     }
-  } # }}}
+  } else {
+    message("...found.")
+  }
+  if (!"Basename" %in% covs) {
+    message("Adding Basename column...")
+    res[,"Basename"] <- sub("_(Red|Grn)\\.idat(\\.gz)?", "", res[, idatCols[1]])
+    message("...done.") 
+  }
 
   lost <- do.call(c, 
                   lapply(idatCols, 
@@ -50,7 +57,10 @@ IDATsToRgSet <- function(res, idatGrn=NULL, idatRed=NULL, parallel=FALSE) {
                      function(i) 
                        do.call(cbind, lapply(basename(res[, i]), getMeans)))
   }
-  out <- new("RGChannelSet", Red=signal[["Red"]], Green=signal[["Grn"]])
+  out <- new("RGChannelSet", 
+             Red=signal[["Red"]], 
+             Green=signal[["Grn"]])
+  sampleNames(out) <- res[,"Basename"]
   anIDAT <- readIDAT(res[1, idatCols["Grn"]])
   featureNames(out) <- rownames(anIDAT$Quants)
   annot <- c(array=switch(anIDAT$ChipType,
