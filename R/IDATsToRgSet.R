@@ -14,7 +14,7 @@
 #'
 IDATsToRgSet <- function(res, idatGrn=NULL, idatRed=NULL, parallel=FALSE) { 
    
-  message("Checking for $", idatGrn, " and $", idatRed, " columns...", append=F)
+  message("Checking for $",idatGrn," and $",idatRed," columns...", appendLF=F)
 
   if (is(res, "SummarizedExperiment")) res <- colData(res)
   covs <- names(res)
@@ -25,18 +25,18 @@ IDATsToRgSet <- function(res, idatGrn=NULL, idatRed=NULL, parallel=FALSE) {
   checkgzip <- function(f) ifelse(file.exists(f), f, paste0(f, ".gz"))
   getIDAT <- function(barcode, ch) checkgzip(paste0(barcode, "_", ch, ".idat"))
   if (!all(idatCols %in% covs)) {
-    message("Checking for $Basename column...", append=F)
+    message("Checking for $Basename column...", appendLF=F)
     if (!"Basename" %in% covs) {
       stop("Missing. Cannot determine IDAT files from data, aborting load.")
     } else { 
-      message("Found.  Reconstructing per-channel IDAT filenames...", append=F)
+      message("Found. Reconstructing per-channel IDAT filenames...", appendLF=F)
       for (ch in channels) res[, idatCols[ch]] <- getIDAT(res$Basename, ch)
     }
   } else {
     message("...found.")
   }
   if (!"Basename" %in% covs) {
-    message("Adding Basename column...", append=F)
+    message("Adding Basename column...", appendLF=F)
     res[,"Basename"] <- sub("_(Red|Grn)\\.idat(\\.gz)?", "", res[, idatCols[1]])
     message("...done.") 
   }
