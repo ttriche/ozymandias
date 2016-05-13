@@ -16,9 +16,12 @@ rgSetToGrSet <- function(rgSet, pcutoff=0.01, genome=c("hg19","hg38"),
     grSet <- preprocessFunnorm(rgSet)
   } else { 
     # needs monkeypatching
-    mSet <- ifelse(annotation(rgSet)["array"] == "IlluminaHumanMethylation27k",
-                   preprocessNoob27k(rgSet),
-                   preprocessNoob(rgSet))
+    if (annotation(rgSet)["array"] == "IlluminaHumanMethylation27k") {
+      mset <- preprocessNoob27k(rgSet)
+    } else {
+      mset <- preprocessNoob(rgSet)
+    }
+    
     genome <- match.arg(genome)
     if (is.null(gr)) {
       library(paste0("FDb.InfiniumMethylation.", genome), character.only=TRUE)
