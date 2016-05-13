@@ -1,6 +1,6 @@
 Package: ozymandias
 Title: Tools for region- and process-centric analyses of multiple assay types
-Version: 0.43
+Version: 0.44
 Date: 2016-05-13
 Author: Tim Triche, Jr.
 Maintainer: Tim Triche, Jr. <tim.triche@gmail.com>
@@ -10,6 +10,7 @@ Authors@R: c(person("Tim", "Triche, Jr.", role = c("aut","cre"),
 Description: A pipeline to process and match Illumina DNA methylation data, SNP
   barcodes, expression and/or SV/CNV/SNV data for subjects who may have "holes"
 Depends:
+    minfi,
     mclust,
     survival,
     GEOquery,

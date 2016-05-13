@@ -5,12 +5,13 @@
 #' @param dyeCorr ignored (no need on 27k)
 #' @param verbose make noise? (TRUE) 
 #' 
+#' @import minfi 
+#' 
 #' @return        a MethylSet
 #'
 #' @export 
 preprocessNoob27k <- function(rgSet, offset=15, dyeCorr=FALSE, verbose = TRUE) {
 
-  .isRG(rgSet)
   manifest <- getManifest(rgSet)
   subverbose <- max(as.integer(verbose) - 1L, 0)
 
