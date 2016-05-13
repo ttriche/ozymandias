@@ -13,14 +13,16 @@ plotSNPs <- function(x, individuals=NULL, rotate=FALSE, ...) {
   tmp <- matrix()
 
   ## the following is obviated by MultiAssayExperiment
-  if (class(x) != "MultiAssayExperiment") {
-    tmp <- metadata(x)$SNPs[, colnames(x)] 
-  } else {
+  if (class(x) == "MultiAssayExperiment") {
     tmp <- perSampleMetadata(x)$SNPs 
+  } else if (is(x, "matrix")) {
+    tmp <- x  
+  } else {
+    tmp <- metadata(x)$SNPs[, colnames(x)] 
   }
 
   if (nrow(tmp) < 2) {
-    stop("Need a SummarizedExperiment with SNP (rsXX) features... none found")
+    stop("Need something with SNP (rsXX) features... none found")
   }
 
 
