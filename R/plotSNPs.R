@@ -14,19 +14,7 @@ plotSNPs <- function(x, individuals=NULL, rotate=FALSE, ...) {
 
   ## the following is obviated by MultiAssayExperiment
   if (class(x) != "MultiAssayExperiment") {
-    probes <- grep("^rs", names(SummarizedExperiment::rowRanges(x)))
-    snps <- grep("^rs", names(SummarizedExperiment::rowRanges(x)), val=T)
-    tmp <- assays(x, withDimnames=F)[[1]][probes, ]
-    if (nrow(tmp) < 2 && "SNPs" %in% names(metadata(x))) {
-      if (!identical(colnames(metadata(x)$SNPs), colnames(x))) {
-        if (all(colnames(x) %in% colnames(metadata(x)$SNPs))) {
-          message("Additional columns in SNP matrix not found in SE, dropping.")
-        } else { 
-          stop("Colnames of your SNP matrix do not match those of your data!")
-        }
-      }
-      tmp <- metadata(x)$SNPs[, colnames(x)] 
-    }
+    tmp <- metadata(x)$SNPs[, colnames(x)] 
   } else {
     tmp <- perSampleMetadata(x)$SNPs 
   }
