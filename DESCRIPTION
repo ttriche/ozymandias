@@ -1,7 +1,7 @@
 Package: ozymandias
 Title: Tools for region- and process-centric analyses of multiple assay types
-Version: 0.40
-Date: 2016-05-12
+Version: 0.41
+Date: 2016-05-13
 Author: Tim Triche, Jr.
 Maintainer: Tim Triche, Jr. <tim.triche@gmail.com>
 Authors@R: c(person("Tim", "Triche, Jr.", role = c("aut","cre"),
@@ -10,13 +10,11 @@ Authors@R: c(person("Tim", "Triche, Jr.", role = c("aut","cre"),
 Description: A pipeline to process and match Illumina DNA methylation data, SNP
   barcodes, expression and/or SV/CNV/SNV data for subjects who may have "holes"
 Depends:
-    ConsensusClusterPlus,
-    RPMM,
     mclust,
     survival,
     GEOquery,
     illuminaio,
-    DMRcateExtras,
+    ConsensusClusterPlus,
     circlize
 Imports:
     methods,
@@ -29,6 +27,7 @@ Imports:
 Suggests:
     knitr,
     PWMEnrich,
+    DMRcateExtras,
     conumee
 License: AGPL
 VignetteBuilder: knitr
