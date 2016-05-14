@@ -1,18 +1,13 @@
 #' plot SNP probes from DNA methylation arrays to avoid label swaps
 #' 
 #' @param x           SummarizedExperiment-like object with DNA methylation data
-#' @param individuals How many distinct individuals are (allegedly) in the data?
 #' @param rotate      rotate the plot? (default is FALSE) 
 #' 
-#' @return            subject identity assignments for the dataset 
+#' @return            output from heatmap(...)
 #'
-plotSNPs <- function(x, individuals=NULL, rotate=FALSE, ...) {
+plotSNPs <- function(x, rotate=FALSE, ...) {
 
   name <- as.character(match.call()["x"])
-
-  tmp <- matrix()
-
-  ## the following is obviated by MultiAssayExperiment
   if (class(x) == "MultiAssayExperiment") {
     tmp <- perSampleMetadata(x)$SNPs 
   } else if (is(x, "matrix")) {
@@ -32,31 +27,11 @@ plotSNPs <- function(x, individuals=NULL, rotate=FALSE, ...) {
   rownames(calls) <- rownames(tmp) 
   colnames(calls) <- colnames(tmp) 
 
-  SNP <- c("blue","yellow","red")
-  heading <- paste("SNPs for", ncol(x) , "samples in", name)
-
+  # plot
   par(mfrow=c(1,1)) 
   if(rotate) calls <- t(calls)
-  if (!is.null(individuals) || (ncol(x) < 99)) { 
-    if (is.null(individuals)) individuals <- ncol(x) / 2
-    message("Tracking plot for clusters...")
-    rcc <- ConsensusClusterPlus(calls, maxK=individuals, reps=10, tmyPal=SNP,
-                                distance="manhattan", clusterAlg="pam", 
-                                ...)[[individuals]]
-    individual <- as.factor(rcc$consensusClass)
-    individuals <- length(levels(individual))
-    heading <- paste("SNPs for", ncol(x) , "samples from", 
-                     individuals, "subjects in", name)
-  }
-
+  SNP <- c("blue","yellow","red")
+  heading <- paste("SNPs for", ncol(x) , "samples in", name)
   heatmap(calls, col=SNP, scale="none", main=heading)
-  
-  if (!is.null(individuals)) {
-    message("Assigned identities:")
-    print(table(individual))
-    invisible(individual)
-  } else { 
-    invisible(1:ncol(x))
-  }
 
 }

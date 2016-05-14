@@ -4,17 +4,15 @@
 \alias{plotSNPs}
 \title{plot SNP probes from DNA methylation arrays to avoid label swaps}
 \usage{
-plotSNPs(x, individuals = NULL, rotate = FALSE, ...)
+plotSNPs(x, rotate = FALSE, ...)
 }
 \arguments{
 \item{x}{SummarizedExperiment-like object with DNA methylation data}
 
-\item{individuals}{How many distinct individuals are (allegedly) in the data?}
-
 \item{rotate}{rotate the plot? (default is FALSE)}
 }
 \value{
-subject identity assignments for the dataset
+output from heatmap(...)
 }
 \description{
 plot SNP probes from DNA methylation arrays to avoid label swaps
