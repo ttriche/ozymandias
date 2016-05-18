@@ -1,7 +1,7 @@
 Package: ozymandias
 Title: Tools for region- and process-centric analyses of multiple assay types
-Version: 0.47
-Date: 2016-05-13
+Version: 0.48
+Date: 2016-05-18
 Author: Tim Triche, Jr.
 Maintainer: Tim Triche, Jr. <tim.triche@gmail.com>
 Authors@R: c(person("Tim", "Triche, Jr.", role = c("aut","cre"),
@@ -16,6 +16,7 @@ Depends:
     GEOquery,
     illuminaio,
     ConsensusClusterPlus,
+    DMRcateExtras,
     circlize
 Imports:
     methods,
@@ -28,7 +29,6 @@ Imports:
 Suggests:
     knitr,
     PWMEnrich,
-    DMRcateExtras,
     conumee
 License: AGPL
 VignetteBuilder: knitr

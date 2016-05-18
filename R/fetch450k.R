@@ -16,6 +16,9 @@ fetch450k <- function(GSE, IDATs=TRUE, ...) {
   res <- GenomicRatioSet(gr=hm450[featureNames(gset)], 
                          pData=pData(gset), 
                          Beta=exprs(gset))
-  if (IDATs) res <- prepForReanalysis(res, ask=!IDATs, ...)
+  if (IDATs) {
+    message("Attempting to reanalyze from raw IDAT files...")
+    res <- prepForReanalysis(res, ask=!IDATs, ...)
+  }
   return(res)
 }

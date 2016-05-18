@@ -30,7 +30,6 @@ geoIDATsToRgSet <- function(res, parallel=FALSE) {
                       idatGrn=cols["Grn"], 
                       idatRed=cols["Red"], 
                       parallel=parallel)
-
   if ("title" %in% names(res)) sampleNames(out) <- out$title
   return(out) 
 
