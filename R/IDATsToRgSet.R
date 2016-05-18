@@ -57,6 +57,7 @@ IDATsToRgSet <- function(res, idatGrn=NULL, idatRed=NULL, parallel=FALSE) {
                      function(i) 
                        do.call(cbind, lapply(basename(res[, i]), getMeans)))
   }
+  names(signal) <- names(idatCols)
   out <- new("RGChannelSet", 
              Red=signal[["Red"]], 
              Green=signal[["Grn"]])
