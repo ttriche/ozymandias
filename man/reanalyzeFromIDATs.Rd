@@ -2,9 +2,9 @@
 % Please edit documentation in R/reanalyzeFromIDATs.R
 \name{reanalyzeFromIDATs}
 \alias{reanalyzeFromIDATs}
-\title{as the name says, if there are IDATs attached to a grSet, rerun them.}
+\title{As the name says, if there are IDATs attached to a grSet, rerun them.}
 \usage{
-reanalyzeFromIDATs(grSet, name)
+reanalyzeFromIDATs(grSet, name, ...)
 }
 \arguments{
 \item{grSet}{a grSet with $supplementary_file and $supplementary_file.1}
@@ -15,6 +15,6 @@ reanalyzeFromIDATs(grSet, name)
 a reanalyzed and funnorm()'ed grSet
 }
 \description{
-as the name says, if there are IDATs attached to a grSet, rerun them.
+As the name says, if there are IDATs attached to a grSet, rerun them.
 }
 

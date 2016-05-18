@@ -11,7 +11,7 @@ prepForReanalysis(res, ask = TRUE, ...)
 
 \item{ask}{ask before downloading the supplemental data? (TRUE)}
 
-\item{...}{other arguments to (potentially) pass to getGEOSuppFiles()}
+\item{...}{other arguments to (potentially) pass to rgSetToGrSet()}
 }
 \value{
 the same thing but with tidied-up Basename, Sample_Name, etc.
