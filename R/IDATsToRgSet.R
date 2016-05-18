@@ -62,7 +62,7 @@ IDATsToRgSet <- function(res, idatGrn=NULL, idatRed=NULL, parallel=FALSE) {
              Red=signal[["Red"]], 
              Green=signal[["Grn"]])
   sampleNames(out) <- res[,"Basename"]
-  anIDAT <- readIDAT(res[1, idatCols["Grn"]])
+  anIDAT <- readIDAT(basename(res[1, idatCols["Grn"]]))
   featureNames(out) <- rownames(anIDAT$Quants)
   annot <- c(array=switch(anIDAT$ChipType,
     "BeadChip 12x1"="IlluminaHumanMethylation27k",
