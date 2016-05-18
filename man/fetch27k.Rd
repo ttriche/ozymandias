@@ -4,12 +4,10 @@
 \alias{fetch27k}
 \title{Pull a 27k dataset from GEO.}
 \usage{
-fetch27k(GSE, IDATs = TRUE, ...)
+fetch27k(GSE, ...)
 }
 \arguments{
 \item{GSE}{The dataset.}
-
-\item{IDATs}{Reanalyze from IDAT files if possible? (TRUE)}
 
 \item{...}{Additional arguments to be passed to prepForReanalysis().}
 }

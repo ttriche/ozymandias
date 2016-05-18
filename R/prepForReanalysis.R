@@ -19,10 +19,14 @@ prepForReanalysis <- function(res, ask=TRUE, ...) {
     message("Attempting to fetch IDAT files for each sample...") 
     lapply(res$geo_accession, getGEOSuppFiles, makeDirectory=FALSE)
     message("Reprocessing IDATs to an RGChannelSet...")
-    rgSet <- geoIDATsToRgSet(res)
-    message("Reprocessing RGChannelSet to a GenomicRatioSet...")
-    res <- rgSetToGrSet(rgSet, ...)
-    message("Done.") 
+    rgSet <- try(geoIDATsToRgSet(res), silent=TRUE)
+    if (inherits(rgSet, "try-error")) {
+      message("Failed to reprocess.  Returning dataset unchanged.")
+    } else {
+      message("Reprocessing RGChannelSet to a GenomicRatioSet...")
+      res <- rgSetToGrSet(rgSet, ...)
+      message("Done.") 
+    }
   }
   return(res)
 

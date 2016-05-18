@@ -3,13 +3,12 @@
 #' Doesn't matter what the annotations are or any other bullshit. Just get it.
 #' 
 #' @param GSE   The dataset.
-#' @param IDATs   Reanalyze from IDAT files if possible? (TRUE) 
 #' @param ...     Additional arguments to be passed to prepForReanalysis().
 #'
 #' @return a GenomicRatioSet.
 #'
 #' @export
-fetch27k <- function(GSE, IDATs=TRUE, ...) {
+fetch27k <- function(GSE, ...) {
 
   gset <- getGEO(GSE)[[1]]
   library(FDb.InfiniumMethylation.hg19)
@@ -18,10 +17,7 @@ fetch27k <- function(GSE, IDATs=TRUE, ...) {
   res <- GenomicRatioSet(gr=hm27[featureNames(gset)], 
                          pData=pData(gset),
                          Beta=exprs(gset))
-  if (IDATs) {
-    message("Attempting to reanalyze from raw IDAT files...")
-    res <- prepForReanalysis(res, ask=!IDATs, ...)
-  }
+  res <- prepForReanalysis(res, ...)
   return(res)
 
 }
