@@ -21,9 +21,9 @@ geoIDATsToRgSet <- function(res, parallel=FALSE) {
     cols["Red"] <- "supplementary_file"
   if (all(grepl("Grn", res$supplementary_file.1))) 
     cols["Grn"] <- "supplementary_file.1"
-  if(!all(file.exists(res[, cols["Grn"]]))) 
+  if(!all(file.exists(basename(res[, cols["Grn"]]))))
     stop("Could not find all Grn channel IDATs.")
-  if(!all(file.exists(res[, cols["Red"]]))) 
+  if(!all(file.exists(basename(res[, cols["Red"]]))))
     stop("Could not find all Red channel IDATs.")
 
   out <- IDATsToRgSet(res, 
