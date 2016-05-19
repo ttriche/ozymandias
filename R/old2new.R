@@ -10,14 +10,31 @@
 #' @export
 old2new <- function(grSet) {
   res <- try(granges(grSet), silent=TRUE)
-  if (class(res) != "try-error") res <- try(grSet@elementMetadata, silent=TRUE)
+  if (class(res) != "try-error") {
+    res <- try(grSet@elementMetadata, silent=TRUE)
+  }
   if (class(res) == "try-error") {
     cdat <- colData(grSet)
-    Beta <- grSet@assays[["Beta"]]
+    anno <- grSet@annotation
     rdat <- try(grSet@rowData, silent=TRUE)
     if (class(rdat) == "try-error") rdat <- grSet@rowRanges
-    anno <- grSet@annotation
-    grSet <- GenomicRatioSet(gr=rdat, Beta=Beta, pData=cdat, annotation=anno)
+    for (name in c("Beta", "M", "CN")) {
+      if (name %in% names(grSet@assays)) {
+        dat <- grSet@assays[[name]]
+        colnames(dat) <- rownames(cdat)
+        assign(name, dat)
+        rm(dat) 
+      } else {
+        assign(name, NULL)
+      }
+    }
+    browser()
+    grSet <- GenomicRatioSet(gr=rdat, 
+                             Beta=Beta, 
+                             pData=cdat, 
+                             CN=CN,
+                             M=M,
+                             annotation=anno)
   }
   return(grSet)
 }
