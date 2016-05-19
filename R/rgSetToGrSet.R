@@ -9,7 +9,7 @@
 #' @return  a GenomicRatioSet with metadata(grSet)$SNPs and p > 0.01 set to NA
 #' 
 #' @export
-rgSetToGrSet <- function(rgSet, pcutoff=0.01, genome=c("hg19","hg38"),
+rgSetToGrSet <- function(rgSet, pcutoff=0.01, genome=c("hg19","hg38","hg18"),
                          funnorm=FALSE, gr=NULL) {
 
   if (funnorm) {
@@ -30,6 +30,8 @@ rgSetToGrSet <- function(rgSet, pcutoff=0.01, genome=c("hg19","hg38"),
                    "IlluminaHumanMethylation450k"=get450k(),
                    "IlluminaHumanMethylationEPIC"=getEPIC())
     }
+    # drop probes that don't map to the target genome, e.g. hg19 
+    mset <- mset[which(rownames(mset) %in% names(gr)), ] # only alignable
     grSet <- GenomicRatioSet(gr=gr[rownames(mset)], Beta=getBeta(mset), 
                              preprocessMethod=preprocessMethod(mset), 
                              CN=getCN(mset), pData=pData(mset),

@@ -4,7 +4,7 @@
 \alias{rgSetToGrSet}
 \title{Take the result of IDATsToRgSet and preprocess it (pvals, SNPs, etc.)}
 \usage{
-rgSetToGrSet(rgSet, pcutoff = 0.01, genome = c("hg19", "hg38"),
+rgSetToGrSet(rgSet, pcutoff = 0.01, genome = c("hg19", "hg38", "hg18"),
   funnorm = FALSE, gr = NULL)
 }
 \arguments{
