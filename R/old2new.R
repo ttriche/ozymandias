@@ -28,7 +28,6 @@ old2new <- function(grSet) {
         assign(name, NULL)
       }
     }
-    browser()
     grSet <- GenomicRatioSet(gr=rdat, 
                              Beta=Beta, 
                              pData=cdat, 
