@@ -5,12 +5,16 @@
 \title{simple function to grab all probes that overlap a promoter and plot 'em.
 FIXME: bolt this onto coMET for prettier plotting and LD-blocking stuff.}
 \usage{
-promoterPlot(grSet, promoter, ...)
+promoterPlot(grSet, promoter, rotate = TRUE, flank = TRUE, ...)
 }
 \arguments{
 \item{grSet}{the GenomicRatioSet from which to get the data}
 
 \item{promoter}{the promoter or other range to overlap}
+
+\item{rotate}{rotate the plot so that samples are rows? (TRUE)}
+
+\item{flank}{flank the given region(s) upstream? (TRUE)}
 
 \item{...}{other arguments passed on to Heatmap()}
 }
