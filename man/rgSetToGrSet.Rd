@@ -5,7 +5,7 @@
 \title{Take the result of IDATsToRgSet and preprocess it (pvals, SNPs, etc.)}
 \usage{
 rgSetToGrSet(rgSet, pcutoff = 0.01, genome = c("hg19", "hg38", "hg18"),
-  funnorm = FALSE, gr = NULL)
+  funnorm = FALSE, gr = NULL, ...)
 }
 \arguments{
 \item{rgSet}{an RGChannelSet}
@@ -17,6 +17,8 @@ rgSetToGrSet(rgSet, pcutoff = 0.01, genome = c("hg19", "hg38", "hg18"),
 \item{funnorm}{run preprocessFunnnorm() to get the grSet? (FALSE, use noob)}
 
 \item{gr}{an optional GenomicRanges to annotate the rows of the result}
+
+\item{...}{additional arguments for preprocessNoob (eg. how="reference")}
 }
 \value{
 a GenomicRatioSet with metadata(grSet)$SNPs and p > 0.01 set to NA

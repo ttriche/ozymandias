@@ -5,21 +5,22 @@
 #' @param genome  genome build to annotate against if not using funnorm (hg19)
 #' @param funnorm run preprocessFunnnorm() to get the grSet? (FALSE, use noob)
 #' @param gr      an optional GenomicRanges to annotate the rows of the result
+#' @param ...     additional arguments for preprocessNoob (eg. how="reference")
 #'
 #' @return  a GenomicRatioSet with metadata(grSet)$SNPs and p > 0.01 set to NA
 #' 
 #' @export
 rgSetToGrSet <- function(rgSet, pcutoff=0.01, genome=c("hg19","hg38","hg18"),
-                         funnorm=FALSE, gr=NULL) {
+                         funnorm=FALSE, gr=NULL, ...) {
 
   if (funnorm) {
     grSet <- preprocessFunnorm(rgSet)
   } else { 
     # needs monkeypatching
     if (annotation(rgSet)["array"] == "IlluminaHumanMethylation27k") {
-      mset <- preprocessNoob27k(rgSet)
+      mset <- preprocessNoob27k(rgSet, ...)
     } else {
-      mset <- preprocessNoob(rgSet)
+      mset <- preprocessNoob(rgSet, ...)
     }
     
     genome <- match.arg(genome)
