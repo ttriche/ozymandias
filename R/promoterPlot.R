@@ -19,9 +19,9 @@ promoterPlot <- function(grSet, promoter, rotate=TRUE, flank=TRUE, ...) {
   if (any(is.na(betas))) betas <- impute.knn(betas)$data
   if (rotate == TRUE) {
     Heatmap(betas, cluster_rows=FALSE, col=jet, name="Methylation", 
-      row_names_gp=gpar(fontsize=7), column_names_gp=gpar(fontsize=7), ...)
+      row_names_gp=gpar(fontsize=6), column_names_gp=gpar(fontsize=6), ...)
   } else { 
     Heatmap(t(betas), cluster_columns=FALSE, col=jet, name="Methylation", 
-      row_names_gp=gpar(fontsize=7), column_names_gp=gpar(fontsize=7), ...)
+      row_names_gp=gpar(fontsize=6), column_names_gp=gpar(fontsize=6), ...)
   }
 } 
