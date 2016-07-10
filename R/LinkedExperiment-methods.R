@@ -27,7 +27,7 @@ setMethod("[", c("LinkedExperiment", "ANY", "ANY"),
 
 # FIXME: steal SummarizedExperiment's "show" and drop the assays line
 setMethod("show", "LinkedExperiment", 
-          function(object) { # {{{
+          function(object) {
             callNextMethod()
             some <- function(x) { 
               ifelse(length(x) %in% 1:3, 
@@ -39,7 +39,7 @@ setMethod("show", "LinkedExperiment",
               cat(paste0("  colnames(", i, "):"), 
                   some(colnames(object@linkedAssays[[i]])), "\n") 
             } 
-          } # }}}
+          }
 )
 
 ## will eventually rename linkedAssays slot to match this method 

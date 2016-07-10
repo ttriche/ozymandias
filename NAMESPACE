@@ -1,6 +1,6 @@
 exportPattern("^[[:alpha:]]+")
 
-exportClasses(MultiAssayExperiment)
+exportClasses(LinkedExperiment)
 
 import(methods)
 import(limma)
