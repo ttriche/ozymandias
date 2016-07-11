@@ -14,6 +14,7 @@ rgSetToGrSet <- function(rgSet, pcutoff=0.01, funnorm=FALSE, dyeMethod="single",
                          genome=c("hg19","hg38","hg18"), gr=NULL, ...) {
 
   platform <- annotation(rgSet)["array"]
+  genome <- match.arg(genome)
   if (genome != "hg19") stop("Genomes besides hg19 are currently unsupported.")
   process <- ifelse(funnorm, "funnorm", 
                     ifelse(platform == "IlluminaHumanMethylation27k", "noob27k",
