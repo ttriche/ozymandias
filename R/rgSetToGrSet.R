@@ -18,24 +18,13 @@ rgSetToGrSet <- function(rgSet, pcutoff=0.01, funnorm=FALSE, dyeMethod="single",
   if (genome != "hg19") stop("Genomes besides hg19 are currently unsupported.")
   process <- ifelse(funnorm, "funnorm", 
                     ifelse(platform == "IlluminaHumanMethylation27k", "noob27k",
-                           "noob")) # default to noob
-
-  map27k <- function(rgSet) { # {{{
-    library(paste0("FDb.InfiniumMethylation.", genome), character.only=TRUE)
-    mset <- preprocessNoob27k(rgSet, ...)
-    gr <- get27k()
-    mset <- mset[which(rownames(mset) %in% names(gr)), ] # only alignable
-    GenomicRatioSet(gr=gr[rownames(mset)], Beta=getBeta(mset), 
-                    preprocessMethod=preprocessMethod(mset),
-                    CN=getCN(mset), pData=pData(mset),
-                    annotation=annotation(mset))
-  } # }}}
+                           "noob")) # default to single-sample noob
 
   dm <- dyeMethod
   grSet <- switch(process,
                   funnorm=preprocessFunnorm(rgSet, ...),
-                  noob27k=map27k(preprocessNoob27k(rgSet, ...)),
-                  noob=ratioConvert(mapToGenome(preprocessNoob(rgSet, 
+                  noob27k=map27k(preprocessNoob27k(rgSet), genome=genome, ...),
+                  noob=ratioConvert(mapToGenome(preprocessNoob(rgSet, ..., 
                                                                dyeMethod=dm))))
   metadata(grSet)$SNPs <- getSnpBeta(rgSet)
   assays(grSet)$pval <- matrix(NA_real_, ncol=ncol(grSet), nrow=nrow(grSet))
