@@ -4,21 +4,21 @@
 \alias{rgSetToGrSet}
 \title{Take the result of IDATsToRgSet and preprocess it (pvals, SNPs, etc.)}
 \usage{
-rgSetToGrSet(rgSet, pcutoff = 0.01, genome = c("hg19", "hg38", "hg18"),
-  funnorm = FALSE, gr = NULL, ...)
+rgSetToGrSet(rgSet, pcutoff = 0.01, funnorm = FALSE, dyeMethod = "single",
+  genome = c("hg19", "hg38", "hg18"), gr = NULL, ...)
 }
 \arguments{
 \item{rgSet}{an RGChannelSet}
 
 \item{pcutoff}{p-value cutoff to set a beta value to NA (0.01)}
 
-\item{genome}{genome build to annotate against if not using funnorm (hg19)}
-
 \item{funnorm}{run preprocessFunnnorm() to get the grSet? (FALSE, use noob)}
 
-\item{gr}{an optional GenomicRanges to annotate the rows of the result}
+\item{dyeMethod}{How to fix dye bias: reference or single sample approach?}
 
-\item{...}{additional arguments for preprocessNoob (eg. how="reference")}
+\item{genome}{genome build to annotate against if not using funnorm (hg19)}
+
+\item{gr}{an optional GenomicRanges to annotate the rows of the result}
 }
 \value{
 a GenomicRatioSet with metadata(grSet)$SNPs and p > 0.01 set to NA
