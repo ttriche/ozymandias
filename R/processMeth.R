@@ -1,8 +1,8 @@
 ## funnorm + pvals + betas + SNPs 
 processMeth <- function(rgSet, name, pcutoff=0.01, saveExcel=FALSE, funnorm=FALSE, ...) {
 
-  if (funnorm == TRUE) grSet <- preprocessFunnorm(rgSet)
-  else grSet <- preprocessNoob(rgSet) # default is ssNoob 
+  if (funnorm == TRUE) grSet <- preprocessFunnorm(rgSet) # use funnorm, or...
+  else grSet <- mapToGenome(rationConvert(preprocessNoob(rgSet))) # use ssNoob 
   metadata(grSet)$SNPs <- getSnpBeta(rgSet)
   assays(grSet)$pval <- matrix(NA_real_, ncol=ncol(grSet), nrow=nrow(grSet))
   assays(grSet)$pval <- detectionP(rgSet)[rownames(grSet), colnames(grSet)]
