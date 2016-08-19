@@ -49,7 +49,7 @@ plotCellCounts <- function(estimates) { # {{{
 ## if(FALSE) {
 ##   library(minfi)
 ##   HuGeF.pdat <- readRDS("HuGeF.pData.rds")
-##   HuGeF <- read.450k.exp(base=".", targets=HuGeF.pdat)
+##   HuGeF <- read.metharray.exp(base=".", targets=HuGeF.pdat)
 ##   for( i in colnames(HuGeF.counts) ) pData(HuGeF)[,i] <- HuGeF.counts[,i]
 ##   HuGeF.counts <- estimateCellCounts(HuGeF)
 ##   HuGeF <- preprocessQuantile(HuGeF)
